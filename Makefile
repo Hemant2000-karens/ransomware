@@ -12,9 +12,10 @@ SERVER_URL=http://$(SERVER_HOST):$(SERVER_PORT)
 LINKER_VARS=-X main.ServerBaseURL=$(SERVER_URL) -X main.UseTor=$(USE_TOR)
 
 deps:
-	go mod download
-	env GO111MODULE=off go get -u github.com/akavel/rsrc \
-		github.com/jteeuwen/go-bindata/...
+    go mod download:
+    	GO111MODULE=on go get -u github.com/akavel/rsrc
+    	GO111MODULE=on go get -u github.com/jteeuwen/go-bindata/...
+
 
 pre-build: clean-bin
 	mkdir -p $(BUILD_DIR)/ransomware $(BUILD_DIR)/unlocker $(BUILD_DIR)/server
